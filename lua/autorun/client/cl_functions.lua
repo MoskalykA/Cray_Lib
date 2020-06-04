@@ -12,3 +12,7 @@ function draw.Circle( x, y, radius, seg )
 
 	surface.DrawPoly( cir )
 end
+
+function numWithCommas(n)
+  return tostring(math.floor(n)):reverse():gsub("(%d%d%d)","%1,"):gsub(",(%-?)$","%1"):reverse()
+end
