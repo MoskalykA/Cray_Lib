@@ -1,4 +1,4 @@
-function draw.Circle( x, y, radius, seg )
+function Cray_Lib.Circle( x, y, radius, seg )
 	local cir = {}
 
 	table.insert( cir, { x = x, y = y, u = 0.5, v = 0.5 } )
@@ -13,6 +13,61 @@ function draw.Circle( x, y, radius, seg )
 	surface.DrawPoly( cir )
 end
 
-function numWithCommas(n)
-  return tostring(math.floor(n)):reverse():gsub("(%d%d%d)","%1,"):gsub(",(%-?)$","%1"):reverse()
+function Cray_Lib.NumberCommas(n)
+    return tostring(math.floor(n)):reverse():gsub('(%d%d%d)','%1,'):gsub(',(%-?)$','%1'):reverse()
+end
+
+local imgS = 35
+function Cray_Lib.AddNotifiation( txt, type, len )
+    local t =
+        {
+            x = ScrW(),
+            y = 0,
+            alpha = 0,
+            w = 0,
+            h = imgS + 10,
+
+            txt = txt or 'No Text',
+            type = type or 'Valid',
+            len = len or 3,
+        }
+
+    table.insert( notifs, t )
+end
+
+function Cray_Lib.Kill( id )
+    for k, v in pairs( notifs ) do
+        if id == v.id then
+            v.die = true
+            break
+        end
+    end
+end
+
+function Cray_Lib.drawNotif( t )
+    surface.SetFont( 'Cray_Lib::Font::4' )
+
+    t.w, _ = surface.GetTextSize( t.txt )
+    t.w = t.w + 50
+
+    local bW = 0
+    if t.len then
+        bW = math.Clamp( 1/t.len*t.w, 0, t.w )
+    else
+        bW = math.Clamp( math.sin( CurTime() ) * t.w, -t.w, t.w )
+    end
+
+    if t.type == 'Valid' then
+        draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
+        draw.RoundedBox( 4, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(39, 174, 96) ) 
+    elseif t.type == 'Invalid' then
+        draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
+        draw.RoundedBox( 4, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(192, 57, 43) ) 
+    elseif t.type == 'ValidMeans' then
+        draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
+        draw.RoundedBox( 4, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(243, 156, 18) ) 
+    end
+
+    draw.SimpleText( t.txt, 'Cray_Lib::Font::4', t.x - t.w+3, t.y + t.h - 30, color_white )
+
 end

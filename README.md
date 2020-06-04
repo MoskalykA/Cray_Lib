@@ -11,13 +11,16 @@
 ## Documentation:
 
 **Shared**
-
+```lua
+Cray_Lib.Version() // -> Check the version
+Cray_Lib.GetVersion() // -> Returns the version
+```
 **Serverside**
 
 **Clientside**
 ```lua
-draw.Circle(number x, number y, number Radius, String texture, Color color) // -> Draw a circle
+Cray_Lib.Circle(number x, number y, number Radius, String texture, Color color) // -> Draw a circle
 ```
 ```lua
-numWithCommas(number n) // -> Put commas in the number
+Cray_Lib.NumberCommas(number n) // -> Put commas in the number
 ```
