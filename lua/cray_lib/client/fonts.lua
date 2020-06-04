@@ -1,5 +1,5 @@
-surface.CreateFont( "Cray_Lib::Font::1", {
-	font = "Arial",
+surface.CreateFont( 'Cray_Lib::Font::1', {
+	font = 'Arial',
 	extended = false,
 	size = 30,
 	weight = 500,
@@ -16,8 +16,8 @@ surface.CreateFont( "Cray_Lib::Font::1", {
 	outline = false,
 })
 
-surface.CreateFont( "Cray_Lib::Font::2", {
-	font = "Arial",
+surface.CreateFont( 'Cray_Lib::Font::2', {
+	font = 'Arial',
 	extended = false,
 	size = 25,
 	weight = 500,
@@ -34,8 +34,8 @@ surface.CreateFont( "Cray_Lib::Font::2", {
 	outline = false,
 })
 
-surface.CreateFont( "Cray_Lib::Font::3", {
-	font = "Arial",
+surface.CreateFont( 'Cray_Lib::Font::3', {
+	font = 'Arial',
 	extended = false,
 	size = 20,
 	weight = 500,
@@ -52,8 +52,8 @@ surface.CreateFont( "Cray_Lib::Font::3", {
 	outline = false,
 })
 
-surface.CreateFont( "Cray_Lib::Font::4", {
-	font = "Arial",
+surface.CreateFont( 'Cray_Lib::Font::4', {
+	font = 'Arial',
 	extended = false,
 	size = 15,
 	weight = 500,
@@ -70,8 +70,8 @@ surface.CreateFont( "Cray_Lib::Font::4", {
 	outline = false,
 })
 
-surface.CreateFont( "Cray_Lib::Font::5", {
-	font = "Arial",
+surface.CreateFont( 'Cray_Lib::Font::5', {
+	font = 'Arial',
 	extended = false,
 	size = 10,
 	weight = 500,
@@ -88,8 +88,8 @@ surface.CreateFont( "Cray_Lib::Font::5", {
 	outline = false,
 })
 
-surface.CreateFont( "Cray_Lib::Font::6", {
-	font = "Arial",
+surface.CreateFont( 'Cray_Lib::Font::6', {
+	font = 'Arial',
 	extended = false,
 	size = 5,
 	weight = 500,

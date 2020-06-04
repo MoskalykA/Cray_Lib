@@ -1,4 +1,6 @@
 function Cray_Lib.Circle( x, y, radius, seg )
+    if Cray_Lib.Version() then return end
+    
 	local cir = {}
 
 	table.insert( cir, { x = x, y = y, u = 0.5, v = 0.5 } )
@@ -14,11 +16,15 @@ function Cray_Lib.Circle( x, y, radius, seg )
 end
 
 function Cray_Lib.NumberCommas(n)
+    if Cray_Lib.Version() then return end
+
     return tostring(math.floor(n)):reverse():gsub('(%d%d%d)','%1,'):gsub(',(%-?)$','%1'):reverse()
 end
 
 local imgS = 35
 function Cray_Lib.AddNotifiation( txt, type, len )
+    if Cray_Lib.Version() then return end
+
     local t =
         {
             x = ScrW(),
@@ -35,7 +41,9 @@ function Cray_Lib.AddNotifiation( txt, type, len )
     table.insert( notifs, t )
 end
 
-function Cray_Lib.Kill( id )
+function Cray_Lib.Kill( id )   
+    if Cray_Lib.Version() then return end
+
     for k, v in pairs( notifs ) do
         if id == v.id then
             v.die = true
@@ -45,6 +53,8 @@ function Cray_Lib.Kill( id )
 end
 
 function Cray_Lib.drawNotif( t )
+    if Cray_Lib.Version() then return end
+
     surface.SetFont( 'Cray_Lib::Font::4' )
 
     t.w, _ = surface.GetTextSize( t.txt )
@@ -69,5 +79,4 @@ function Cray_Lib.drawNotif( t )
     end
 
     draw.SimpleText( t.txt, 'Cray_Lib::Font::4', t.x - t.w+3, t.y + t.h - 30, color_white )
-
 end

@@ -1,4 +1,5 @@
 concommand.Add('cray_lib_notifiation_test', function()
+    if Cray_Lib.Version() then return end
     if not IsValid(LocalPlayer()) then return end
 
     Cray_Lib.AddNotifiation('Example of a valid notification type', 'Valid', 10)
