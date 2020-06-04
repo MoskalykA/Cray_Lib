@@ -10,16 +10,27 @@
 
 ## Example:
 
-### Notification:
+### Screen:
 
 ![Notification](https://github.com/MoskalykA/img/blob/master/cray_lib_notification_v1.png?raw=true)
+
+### Commands:
+
+* Test commands:
+ * - cray_lib_notifiation_test -> Display the 3 types of notification
+ * - cray_lib_format_time_test -> Display an example of time formatting
 
 ## Documentation:
 
 **Shared**
 ```lua
 Cray_Lib.Version() // -> Check the version
+```
+```lua
 Cray_Lib.GetVersion() // -> Returns the version
+```
+```lua
+Cray_Lib.FormatTime(number time) // -> Format of seconds in time
 ```
 **Serverside**
 
@@ -29,4 +40,7 @@ Cray_Lib.Circle(number x, number y, number Radius, String texture, Color color) 
 ```
 ```lua
 Cray_Lib.NumberCommas(number n) // -> Put commas in the number
+```
+```lua
+Cray_Lib.AddNotification(string txt, number type, number len) // -> Display the notification
 ```
