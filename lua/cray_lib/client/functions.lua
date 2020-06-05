@@ -69,7 +69,7 @@ function Cray_Lib.drawNotif( t )
 
     if t.type == 1 then
         draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
-        draw.RoundedBox( 4, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(39, 174, 96) ) 
+        draw.RoundedBox( 0, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(39, 174, 96) ) 
     elseif t.type == 2 then
         draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
         draw.RoundedBox( 4, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(192, 57, 43) ) 
