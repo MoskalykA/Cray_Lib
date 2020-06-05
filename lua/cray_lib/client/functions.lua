@@ -72,10 +72,10 @@ function Cray_Lib.drawNotif( t )
         draw.RoundedBox( 0, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(39, 174, 96) ) 
     elseif t.type == 2 then
         draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
-        draw.RoundedBox( 4, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(192, 57, 43) ) 
+        draw.RoundedBox( 0, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(192, 57, 43) ) 
     elseif t.type == 3 then
         draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
-        draw.RoundedBox( 4, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(243, 156, 18) ) 
+        draw.RoundedBox( 0, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(243, 156, 18) ) 
     end
 
     draw.SimpleText( t.txt, 'Cray_Lib::Font::4', t.x - t.w+3, t.y + t.h - 30, color_white )
