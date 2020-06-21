@@ -1,0 +1,15 @@
+{
+	"title" :	"Cray Lib",
+	"type"  :	"ServerContent",
+	"tags"  :	["roleplay","fun"],
+	"ignore":
+	[
+		"*.cmd",
+		"*.ini",
+		"*.lnk",
+		"*.url",
+		"content #1.jpg",
+		"content #1.png",
+		"content #1.jpeg"
+	]
+}
