@@ -5,14 +5,13 @@
 * MoskalykA (Creator)
   * [GitHub](https://github.com/MoskalykA)
   * [Github Website](https://moskalyka.github.io/)
-  * [Website](https://cray-dev.fr/)
-  * [![Discord Bots](https://top.gg/api/widget/617138885125996574.svg)](https://top.gg/bot/617138885125996574)
+  * [Website](https://cray-dev.com/)
 
 ## Example:
 
 ### Screen:
 
-![Notification](https://github.com/MoskalykA/img/blob/master/cray_lib_notification_v1.png?raw=true)
+![Notification](https://file.cray-dev.com/cray_lib_notification_v1.png)
 
 ### Commands:
 
