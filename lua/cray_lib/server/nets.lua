@@ -1,1 +1,1 @@
-util.AddNetworkString("CrayLib::NotificationSend")
+util.AddNetworkString('CrayLib::NotificationSend')

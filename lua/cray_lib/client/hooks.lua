@@ -1,6 +1,6 @@
 hook.Add('Think', 'CrayLib::Notification::Think', function()
-    if not Cray_Lib.Version() then return end
-
+    if not IsValid(LocalPlayer()) then return end
+    
     for k, v in ipairs( notifs ) do
         v.y = Lerp( FrameTime()*5, v.y, ScrH() - 250 - k * (v.h + 5) )
 
@@ -24,7 +24,7 @@ hook.Add('Think', 'CrayLib::Notification::Think', function()
 end)
 
 hook.Add('HUDPaint', 'CrayLib::Notification::HUDPaint', function()
-    if not Cray_Lib.Version() then return end
+    if not IsValid(LocalPlayer()) then return end
 
     for k, v in ipairs( notifs ) do
         Cray_Lib.drawNotif( v )

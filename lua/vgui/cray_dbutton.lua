@@ -11,4 +11,4 @@ function PANEL:Paint( w, h )
     end	
 end
 
-vgui.Register("Cray::DButton", PANEL, "DButton")
+vgui.Register('Cray::DButton', PANEL, 'DButton')
