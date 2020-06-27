@@ -29,7 +29,7 @@ function Cray_Lib.AddNotifiation( txt, type, len )
 
             txt = txt or 'No Text',
             type = type or 1,
-            len = len or 3,
+            len = len or 10,
         }
 
     table.insert( notifs, t )
@@ -66,6 +66,9 @@ function Cray_Lib.drawNotif( t )
     elseif t.type == 3 then
         draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
         draw.RoundedBox( 0, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(243, 156, 18) ) 
+    elseif t.type == 4 then
+        draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
+        draw.RoundedBox( 0, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(52, 152, 235) ) 
     end
 
     draw.SimpleText( t.txt, 'Cray_Lib::Font::6', t.x - t.w+3, t.y + t.h - 30, color_white )

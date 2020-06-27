@@ -12,22 +12,30 @@
 ### Screen:
 
 ![Notification](https://file.cray-dev.com/cray_lib_notification_v1.png)
+![DFrame](https://file.cray-dev.com/cray_lib_dframe_v1.png)
+![DPanel](https://file.cray-dev.com/cray_lib_dpanel_v1.png)
+![DButton](https://file.cray-dev.com/cray_lib_dbutton_v1.png)
 
 ### Commands:
 
 * Test commands:
- * - cray_lib_notifiation_test -> Display the 3 types of notification
+ * - cray_lib_notifiation_test -> Display the 4 types of notification
+ * - cray_lib_notifiation_1_test -> Displaying the 1st notification
+ * - cray_lib_notifiation_2_test -> Displaying the 2nd notification
+ * - cray_lib_notifiation_3_test -> Displaying the 3rd notification
+ * - cray_lib_notifiation_4_test -> Displaying the 4th notification
  * - cray_lib_format_time_test -> Display an example of time formatting
+ * - cray_lib_spawnmenu -> Displaying an example of a spawnmenu 
+ * - cray_lib_vgui_test -> Displaying a vgui test
+ * - cray_lib_vgui_test2 -> Displaying a vgui test
+ * - cray_lib_vgui_test3 -> Displaying a vgui test
+
+* Other commands:
+  * - cray_lib_reload -> Reload lib
 
 ## Documentation:
 
 **Shared**
-```lua
-Cray_Lib.Version() // -> Check the version
-```
-```lua
-Cray_Lib.GetVersion() // -> Returns the version
-```
 ```lua
 Cray_Lib.FormatTime(number time) // -> Format of seconds in time
 ```
