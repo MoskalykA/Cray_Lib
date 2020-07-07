@@ -1,9 +1,6 @@
-Cray_Lib = Cray_Lib or {}
-notifs = notifs or {}
-
-function Cray_Lib.FormatTime(time)
-    local days = math.floor(time/86400)
-    local remaining = time % 86400
+function Cray_Lib.Functions.FormatTime(tTime)
+    local days = math.floor(tTime/86400)
+    local remaining = tTime % 86400
     local hours = math.floor(remaining/3600)
     remaining = remaining % 3600
     local minutes = math.floor(remaining/60)

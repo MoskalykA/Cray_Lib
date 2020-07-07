@@ -1,6 +1,6 @@
 local path = 'cray_lib'
 
-function CrayLibLoad()
+local function CrayLibLoad()
     if SERVER then
         MsgN('///////////////////////////////')
         MsgN('//     Cray Lib    //')
@@ -27,6 +27,7 @@ function CrayLibLoad()
     end
     
     if CLIENT then
+        MsgN('///////////////////////////////')
         local files = file.Find(path..'/shared/*.lua', 'LUA')
         for _, file in ipairs(files) do
             include(path..'/shared/'..file)
@@ -36,6 +37,7 @@ function CrayLibLoad()
         for _, file in ipairs(files) do
             include(path..'/client/'..file)
         end
+        MsgN('///////////////////////////////')
     end
 end
 

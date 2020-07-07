@@ -1,4 +1,4 @@
-function Cray_Lib.Circle( x, y, radius, seg )
+function Cray_Lib.Functions.Circle( x, y, radius, seg )
     local cir = {}
 
 	table.insert( cir, { x = x, y = y, u = 0.5, v = 0.5 } )
@@ -13,12 +13,12 @@ function Cray_Lib.Circle( x, y, radius, seg )
 	surface.DrawPoly( cir )
 end
 
-function Cray_Lib.NumberCommas(n)
+function Cray_Lib.Functions.NumberCommas(n)
     return tostring(math.floor(n)):reverse():gsub('(%d%d%d)','%1,'):gsub(',(%-?)$','%1'):reverse()
 end
 
 local imgS = 35
-function Cray_Lib.AddNotifiation( txt, type, len )
+function Cray_Lib.Functions.AddNotifiation( txt, type, len )
     local t =
         {
             x = ScrW(),
@@ -32,44 +32,44 @@ function Cray_Lib.AddNotifiation( txt, type, len )
             len = len or 10,
         }
 
-    table.insert( notifs, t )
+    table.insert( Cray_Lib.Notfications, t )
 end
 
-function Cray_Lib.Kill( id )   
-    for k, v in pairs( notifs ) do
-        if id == v.id then
+function Cray_Lib.Functions.Kill( nId )   
+    for k, v in pairs( Cray_Lib.Notfications ) do
+        if nId == v.id then
             v.die = true
             break
         end
     end
 end
 
-function Cray_Lib.drawNotif( t )
-    surface.SetFont( 'Cray_Lib::Font::6' )
+function Cray_Lib.Functions.drawNotif( tNotif )
+    surface.SetFont( 'Cray_Lib::Font::15' )
 
-    t.w, _ = surface.GetTextSize( t.txt )
-    t.w = t.w + 50
+    tNotif.w, _ = surface.GetTextSize( tNotif.txt )
+    tNotif.w = tNotif.w + 50
 
     local bW = 0
-    if t.len then
-        bW = math.Clamp( 1/t.len*t.w, 0, t.w )
+    if tNotif.len then
+        bW = math.Clamp( 1/tNotif.len*tNotif.w, 0, tNotif.w )
     else
-        bW = math.Clamp( math.sin( CurTime() ) * t.w, -t.w, t.w )
+        bW = math.Clamp( math.sin( CurTime() ) * tNotif.w, -tNotif.w, tNotif.w )
     end
 
-    if t.type == 1 then
-        draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
-        draw.RoundedBox( 0, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(39, 174, 96) ) 
-    elseif t.type == 2 then
-        draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
-        draw.RoundedBox( 0, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(192, 57, 43) ) 
-    elseif t.type == 3 then
-        draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
-        draw.RoundedBox( 0, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(243, 156, 18) ) 
-    elseif t.type == 4 then
-        draw.RoundedBox( 4, t.x - t.w-25, t.y, t.w, t.h, Color(44, 62, 80) )
-        draw.RoundedBox( 0, t.x - t.w-25, t.y+0.05, t.w-(t.w - 21), t.h, Color(52, 152, 235) ) 
+    if tNotif.type == 1 then
+        draw.RoundedBox( 4, tNotif.x - tNotif.w-25, tNotif.y, tNotif.w, tNotif.h, Cray_Lib.Colors._446280 )
+        draw.RoundedBox( 0, tNotif.x - tNotif.w-25, tNotif.y+0.05, tNotif.w-(tNotif.w - 21), tNotif.h, Cray_Lib.Colors._3917496 ) 
+    elseif tNotif.type == 2 then
+        draw.RoundedBox( 4, tNotif.x - tNotif.w-25, tNotif.y, tNotif.w, tNotif.h, Cray_Lib.Colors._446280 )
+        draw.RoundedBox( 0, tNotif.x - tNotif.w-25, tNotif.y+0.05, tNotif.w-(tNotif.w - 21), tNotif.h, Cray_Lib.Colors._1925743 ) 
+    elseif tNotif.type == 3 then
+        draw.RoundedBox( 4, tNotif.x - tNotif.w-25, tNotif.y, tNotif.w, tNotif.h, Cray_Lib.Colors._446280 )
+        draw.RoundedBox( 0, tNotif.x - tNotif.w-25, tNotif.y+0.05, tNotif.w-(tNotif.w - 21), tNotif.h, Cray_Lib.Colors._24315618 ) 
+    elseif tNotif.type == 4 then
+        draw.RoundedBox( 4, tNotif.x - tNotif.w-25, tNotif.y, tNotif.w, tNotif.h, Cray_Lib.Colors._446280 )
+        draw.RoundedBox( 0, tNotif.x - tNotif.w-25, tNotif.y+0.05, tNotif.w-(tNotif.w - 21), tNotif.h, Cray_Lib.Colors._52152235 ) 
     end
 
-    draw.SimpleText( t.txt, 'Cray_Lib::Font::6', t.x - t.w+3, t.y + t.h - 30, color_white )
+    draw.SimpleText( tNotif.txt, 'Cray_Lib::Font::15', tNotif.x - tNotif.w+3, tNotif.y + tNotif.h - 30, color_white )
 end

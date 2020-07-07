@@ -5,7 +5,7 @@ function PANEL:Init()
 end
 
 function PANEL:Paint( w, h )	
-    draw.RoundedBox(10, 0, 0, w, h, Color(26, 32, 44))	
+    draw.RoundedBox(10, 0, 0, w, h, Cray_Lib.Colors._263244)	
 end
 
 vgui.Register('Cray::DFrame', PANEL, 'DFrame')

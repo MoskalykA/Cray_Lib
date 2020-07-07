@@ -11,10 +11,11 @@
 
 ### Screen:
 
-![Notification](https://file.cray-dev.com/cray_lib_notification_v1.png)
+![Notification](https://file.cray-dev.com/cray_lib_notification_v2.png)
 ![DFrame](https://file.cray-dev.com/cray_lib_dframe_v1.png)
 ![DPanel](https://file.cray-dev.com/cray_lib_dpanel_v1.png)
 ![DButton](https://file.cray-dev.com/cray_lib_dbutton_v1.png)
+![Font](https://file.cray-dev.com/cray_lib_font_v1.png)
 
 ### Commands:
 
@@ -29,6 +30,7 @@
  * - cray_lib_vgui_test -> Displaying a vgui test
  * - cray_lib_vgui_test2 -> Displaying a vgui test
  * - cray_lib_vgui_test3 -> Displaying a vgui test
+ * - cray_lib_font_test -> Displaying a font test
 
 * Other commands:
   * - cray_lib_reload -> Reload lib
@@ -37,17 +39,17 @@
 
 **Shared**
 ```lua
-Cray_Lib.FormatTime(number time) // -> Format of seconds in time
+Cray_Lib.Functions.FormatTime(number time) // -> Format of seconds in time
 ```
 **Serverside**
 
 **Clientside**
 ```lua
-Cray_Lib.Circle(number x, number y, number Radius, String texture, Color color) // -> Draw a circle
+Cray_Lib.Functions.Circle(number x, number y, number Radius, String texture, Color color) // -> Draw a circle
 ```
 ```lua
-Cray_Lib.NumberCommas(number n) // -> Put commas in the number
+Cray_Lib.Functions.NumberCommas(number n) // -> Put commas in the number
 ```
 ```lua
-Cray_Lib.AddNotification(string txt, number type, number len) // -> Display the notification
+Cray_Lib.Functions.AddNotification(string txt, number type, number len) // -> Display the notification
 ```
