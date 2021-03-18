@@ -1,33 +1,42 @@
+/*
+@name Cray_Lib
+@description Garry's Mod Library.
+@author Agent Arthur
+*/
+
 local path = 'cray_lib'
 
-local function CrayLibLoad()
+local function Loading()
     if SERVER then
-        MsgN('///////////////////////////////')
-        MsgN('//     Cray Lib    //')
-        MsgN('///////////////////////////////')
+        local files = file.Find(path..'/config/*.lua', 'LUA')
+        for _, file in ipairs(files) do
+            AddCSLuaFile(path..'/config/'..file)
+            include(path..'/config/'..file)
+        end
+
         local files = file.Find(path..'/shared/*.lua', 'LUA')
         for _, file in ipairs(files) do
             AddCSLuaFile(path..'/shared/'..file)
             include(path..'/shared/'..file)
-            Msg('FILE: '..file..'\n')
         end
     
         local files = file.Find(path..'/client/*.lua', 'LUA')
         for _, file in ipairs(files) do
             AddCSLuaFile(path..'/client/'..file)
-            Msg('FILE: '..file..'\n')
         end
     
         local files = file.Find(path..'/server/*.lua', 'LUA')
         for _, file in ipairs(files) do
             include(path..'/server/'..file)
-            Msg('FILE: '..file..'\n')
         end
-        MsgN('///////////////////////////////')
     end
     
     if CLIENT then
-        MsgN('///////////////////////////////')
+        local files = file.Find(path..'/config/*.lua', 'LUA')
+        for _, file in ipairs(files) do
+            include(path..'/config/'..file)
+        end
+        
         local files = file.Find(path..'/shared/*.lua', 'LUA')
         for _, file in ipairs(files) do
             include(path..'/shared/'..file)
@@ -37,10 +46,7 @@ local function CrayLibLoad()
         for _, file in ipairs(files) do
             include(path..'/client/'..file)
         end
-        MsgN('///////////////////////////////')
     end
 end
 
-CrayLibLoad()
-
-concommand.Add('cray_lib_reload', CrayLibLoad)
+Loading()
