@@ -1,7 +1,7 @@
 /*
 @name Cray_Lib
 @description Garry's Mod Library.
-@author Agent Arthur
+@author Agent Arthur(MoskalykA)
 */
 
 net.Receive('Cray_Lib.Nets.Notification.Send', function(len, ply)
@@ -10,7 +10,6 @@ net.Receive('Cray_Lib.Nets.Notification.Send', function(len, ply)
     local text = net.ReadString()
     local type = net.ReadInt(8)
     local len = net.ReadInt(8)
-
     Cray_Lib.Notifications:AddNotification(text, type, len)
 end)
 

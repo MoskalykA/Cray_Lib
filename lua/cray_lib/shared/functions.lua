@@ -1,7 +1,7 @@
 /*
 @name Cray_Lib
 @description Garry's Mod Library.
-@author Agent Arthur
+@author Agent Arthur(MoskalykA)
 */
 
 function Cray_Lib.Math:FormatTime(seconds)
@@ -9,7 +9,6 @@ function Cray_Lib.Math:FormatTime(seconds)
     if not isnumber(seconds) then return end
 
     local seconds = tonumber(seconds)
-
     if seconds <= 0 then
         return '00:00:00'
     else

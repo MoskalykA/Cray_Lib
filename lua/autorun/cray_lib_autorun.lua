@@ -1,11 +1,10 @@
 /*
 @name Cray_Lib
 @description Garry's Mod Library.
-@author Agent Arthur
+@author Agent Arthur(MoskalykA)
 */
 
 local path = 'cray_lib'
-
 local function Loading()
     if SERVER then
         local files = file.Find(path..'/config/*.lua', 'LUA')

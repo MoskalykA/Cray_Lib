@@ -1,7 +1,7 @@
 /*
 @name Cray_Lib
 @description Garry's Mod Library.
-@author Agent Arthur
+@author Agent Arthur(MoskalykA)
 */
 
 hook.Add('Think', 'Cray_Lib.Hooks.Notification.Think', function()

@@ -1,7 +1,7 @@
 /*
 @name Cray_Lib
 @description Garry's Mod Library.
-@author Agent Arthur
+@author Agent Arthur(MoskalykA)
 */
 
 local Cray_Lib_Notification_imageSize = 35
@@ -38,12 +38,27 @@ function Cray_Lib.Colors:Color(r, g, b, a)
     if Cray_Lib.Colors['_' .. table.r .. table.g .. table.b .. table.a] then
         goto finish
     else
-        Cray_Lib.Colors['_' .. table.r .. table.g .. table.b .. table.a] = Color(math.min( tonumber(r), 255 ), math.min( tonumber(g), 255 ), math.min( tonumber(b), 255 ), math.min( tonumber(a), 255 ))
+        Cray_Lib.Colors['_' .. table.r .. table.g .. table.b .. table.a] = Color(table.r, table.g, table.b, table.a)
     end
 
     ::finish::
-
+    
     return Cray_Lib.Colors['_' .. table.r .. table.g .. table.b .. table.a]
+end
+
+function Cray_Lib.Materials:Material(material)
+    if not material then return end
+    if not isstring(material) then return end
+
+    if Cray_Lib.Materials['_' .. string.Replace(string.Replace(material, '.', ''), '/', '')] then
+        goto finish
+    else
+        Cray_Lib.Materials['_' .. string.Replace(string.Replace(material, '.', ''), '/', '')] = '_' .. string.Replace(string.Replace(material, '.', ''), '/', '')
+    end
+
+    ::finish::
+    
+    return Cray_Lib.Materials['_' .. string.Replace(string.Replace(material, '.', ''), '/', '')]
 end
 
 function Cray_Lib.Notifications:AddNotification(text, type, len)
@@ -83,14 +98,6 @@ function Cray_Lib.Notifications:DrawNotif(notification)
 
     notification.w, _ = surface.GetTextSize(notification.text)
     notification.w = notification.w + 50
-
-    local bW = 0
-    if notification.len then
-        bW = math.Clamp(1 / notification.len * notification.w, 0, notification.w)
-    else
-        bW = math.Clamp(math.sin(CurTime()) * notification.w, - notification.w, notification.w)
-    end
-
     if notification.type == 1 then
         draw.RoundedBox(4, notification.x - notification.w - 25, notification.y, notification.w, notification.h, Cray_Lib.Colors:Color(44, 62, 80))
         draw.RoundedBox(0, notification.x - notification.w - 25, notification.y + 0.05, notification.w - (notification.w - 21), notification.h, Cray_Lib.Colors:Color(39, 174, 96)) 
@@ -116,5 +123,3 @@ function Cray_Lib.Data:Sync()
         end)
     end
 end
-
-Cray_Lib.Data:Sync()
