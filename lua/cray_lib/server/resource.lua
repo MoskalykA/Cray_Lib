@@ -1,0 +1,1 @@
+resource.AddFile('materials/cray_lib/colorpicker.png')

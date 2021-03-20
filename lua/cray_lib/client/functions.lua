@@ -34,7 +34,7 @@ function Cray_Lib.Colors:Color(r, g, b, a)
     
     a = a or 255
 
-    local table = { r = math.min( tonumber(r), 255 ), g =  math.min( tonumber(g), 255 ), b =  math.min( tonumber(b), 255 ), a =  math.min( tonumber(a), 255 ) }
+    local table = {r = math.min( r, 255 ), g =  math.min( g, 255 ), b =  math.min( b, 255 ), a =  math.min( a, 255 )}
     if Cray_Lib.Colors['_' .. table.r .. table.g .. table.b .. table.a] then
         goto finish
     else
@@ -53,7 +53,7 @@ function Cray_Lib.Materials:Material(material)
     if Cray_Lib.Materials['_' .. string.Replace(string.Replace(material, '.', ''), '/', '')] then
         goto finish
     else
-        Cray_Lib.Materials['_' .. string.Replace(string.Replace(material, '.', ''), '/', '')] = '_' .. string.Replace(string.Replace(material, '.', ''), '/', '')
+        Cray_Lib.Materials['_' .. string.Replace(string.Replace(material, '.', ''), '/', '')] = Material(material)
     end
 
     ::finish::
@@ -65,17 +65,7 @@ function Cray_Lib.Notifications:AddNotification(text, type, len)
     if not text or not type or not len then return end
     if not isstring(text) or not isnumber(type) or not isnumber(len) then return end
 
-    table.insert(Cray_Lib.Notifications, {
-        x = ScrW(),
-        y = 0,
-        alpha = 0,
-        w = 0,
-        h = Cray_Lib_Notification_imageSize + 10,
-
-        text = text,
-        type = type,
-        len = len,
-    })
+    Cray_Lib.Notifications[#Cray_Lib.Notifications + 1] = { x = ScrW(), y = 0, alpha = 0, w = 0, h = Cray_Lib_Notification_imageSize + 10, text = text, type = type, len = len }
 end
 
 function Cray_Lib.Notifications:KillNotification(id)   
@@ -121,5 +111,55 @@ function Cray_Lib.Data:Sync()
             local table = net.ReadTable()
             table.player[table.variable_name] = table.response
         end)
+    end
+end
+
+function Cray_Lib.Math:FormatTime(seconds)
+    if not seconds then return end
+    if not isnumber(seconds) then return end
+
+    local seconds = tonumber(seconds)
+    if seconds <= 0 then
+        return '00:00:00'
+    else
+        hours = string.format('%02.f', math.floor(seconds / 3600))
+        mins = string.format('%02.f', math.floor(seconds / 60 - (hours * 60)))
+        secs = string.format('%02.f', math.floor(seconds - hours * 3600 - mins * 60))
+        
+        return hours .. ':' .. mins .. ':' .. secs
+    end
+end
+
+function Cray_Lib.Math:NumberCommas(number)
+    if not number then return end
+    if not isnumber(number) then return end
+
+    return tostring(math.floor(number)):reverse():gsub('(%d%d%d)','%1,'):gsub(',(%-?)$','%1'):reverse()
+end
+
+function Cray_Lib.Math:MoneyCommas(money)
+    if not money then return end
+    if not isnumber(money) then return end
+
+    return '$' .. tostring(math.floor(money)):reverse():gsub('(%d%d%d)','%1,'):gsub(',(%-?)$','%1'):reverse()
+end
+
+function Cray_Lib.Math:Power(power, exponent)
+    if not power or not exponent then return end
+    if not isnumber(power) or not isnumber(exponent) then return end
+
+    return power ^ exponent
+end
+
+function Cray_Lib.Math:Convert(type, totype, value)
+    if not type or not totype or not value then return end
+    if not isstring(type) or not isstring(totype) then return end
+
+    for k, v in ipairs(Cray_Lib.Math.Lists) do
+        if v.type == type and v.totype == totype then
+            return v.func(value)
+        else
+            return 0
+        end
     end
 end

@@ -10,6 +10,9 @@ net.Receive('Cray_Lib.Nets.Notification.Send', function(len, ply)
     local text = net.ReadString()
     local type = net.ReadInt(8)
     local len = net.ReadInt(8)
+    if not text or not type or not len then return end
+    if not isstring(text) or not isnumber(type) or not isnumber(len) then return end
+
     Cray_Lib.Notifications:AddNotification(text, type, len)
 end)
 

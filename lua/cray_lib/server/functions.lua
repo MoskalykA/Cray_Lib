@@ -82,5 +82,3 @@ function Cray_Lib.Data:UpdateData(name, value, player)
         end
     end 
 end
-
-Cray_Lib.Data:Sync()
