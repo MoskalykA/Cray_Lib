@@ -9,6 +9,7 @@ Cray_Lib = Cray_Lib or {}
 Cray_Lib.Colors = Cray_Lib.Colors or {}
 Cray_Lib.Notifications = Cray_Lib.Notifications or {}
 Cray_Lib.Materials = Cray_Lib.Materials or {}
+Cray_Lib.Graphics = Cray_Lib.Graphics or {}
 
 Cray_Lib.Fonts = Cray_Lib.Fonts or {}
 Cray_Lib.Fonts.Data = {}

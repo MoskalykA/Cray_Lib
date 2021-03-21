@@ -23,3 +23,10 @@ end)
 net.Receive('Cray_Lib.Nets.Data.Sync', function()
     Cray_Lib.Data:Sync()
 end)
+
+net.Receive('Cray_Lib.Nets.Configuration.ClientSync', function()
+    if not IsValid(LocalPlayer()) then return end
+    if not LocalPlayer():GetUserGroup() == 'superadmin' then return end
+
+    LocalPlayer().Cray_Lib_Config = net.ReadTable()
+end)

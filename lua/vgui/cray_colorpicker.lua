@@ -9,10 +9,13 @@ AccessorFunc(PANEL, 'm_RGB', 'RGB')
 
 function PANEL:Init()
 	self:SetRGB(color_white)
+	self:SetCursor('blank')
+
 	self.Material = Cray_Lib.Materials:Material('cray_lib/colorpicker.png')
 
 	self.LastX = -100
 	self.LastY = -100
+	self.Cursor = 'cray_lib/cursor.png'
 end
 
 function PANEL:GetPosColor(x, y)
@@ -58,8 +61,18 @@ function PANEL:Paint(w, h)
 	surface.SetMaterial(self.Material)
 	surface.DrawTexturedRect(0, 0, w, h)
 
-	surface.SetDrawColor(255, 255, 255, 250)
-	surface.DrawCircle(self.LastX, self.LastY - 1, 5, color_white)
+	Cray_Lib.Graphics:DrawCustomCursor(self, Cray_Lib.Materials:Material(self.Cursor))
 end
 
-derma.DefineControl('Cray_ColorPicker', '', PANEL, 'DPanel')
+function PANEL:SetColorCursor(cursor)
+	if not cursor then return end
+    if not isstring(cursor) then return end
+
+	self.Cursor = cursor
+end
+
+function PANEL:GetColorCursor()
+	return self.Cursor
+end
+
+derma.DefineControl('Cray_ColorPicker', 'An element for choosing a colour.', PANEL, 'DPanel')

@@ -163,3 +163,13 @@ function Cray_Lib.Math:Convert(type, totype, value)
         end
     end
 end
+
+function Cray_Lib.Graphics:DrawCustomCursor(panel, material)
+    if not panel or not material then return end
+    if not ispanel(panel) or not IsValid(panel) then return end
+    
+	local cursorX, cursorY = panel:LocalCursorPos()
+	surface.SetDrawColor(255, 255, 255, 240)
+	surface.SetMaterial(material)
+	surface.DrawTexturedRect(cursorX, cursorY, 20, 20)
+end
