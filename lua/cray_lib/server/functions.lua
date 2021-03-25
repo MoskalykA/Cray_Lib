@@ -52,8 +52,6 @@ function Cray_Lib.Data:SetData(name, value, player)
             net.Start('Cray_Lib.Nets.Data.Update_' .. v.name)
                 net.WriteTable(table)
             net.Send(player)
-        else
-            return
         end
     end 
 end
@@ -77,8 +75,6 @@ function Cray_Lib.Data:UpdateData(name, value, player)
             net.Start('Cray_Lib.Nets.Data.Update_' .. v.name)
                 net.WriteTable(table)
             net.Send(player)
-        else
-            return
         end
     end 
 end

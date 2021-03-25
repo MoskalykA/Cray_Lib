@@ -27,7 +27,7 @@ function PANEL:IsDown()
 end
 
 function PANEL:Paint(w, h)
-	draw.RoundedBox(3, 0, 0, w, h, self.CurrentBackgroundColor)
+	draw.RoundedBox(0, 0, 0, w, h, self.CurrentBackgroundColor)
 
 	Cray_Lib.Graphics:DrawCustomCursor(self, Cray_Lib.Materials:Material(self.Cursor))
 end

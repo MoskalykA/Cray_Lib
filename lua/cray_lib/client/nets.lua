@@ -4,9 +4,7 @@
 @author Agent Arthur(MoskalykA)
 */
 
-net.Receive('Cray_Lib.Nets.Notification.Send', function(len, ply)
-    if not IsValid(ply) then return end
-    
+net.Receive('Cray_Lib.Nets.Notification.Send', function()
     local text = net.ReadString()
     local type = net.ReadInt(8)
     local len = net.ReadInt(8)
@@ -25,8 +23,7 @@ net.Receive('Cray_Lib.Nets.Data.Sync', function()
 end)
 
 net.Receive('Cray_Lib.Nets.Configuration.ClientSync', function()
-    if not IsValid(LocalPlayer()) then return end
-    if not LocalPlayer():GetUserGroup() == 'superadmin' then return end
+    if not (LocalPlayer():GetUserGroup() == 'superadmin') then return end
 
     LocalPlayer().Cray_Lib_Config = net.ReadTable()
 end)

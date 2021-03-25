@@ -34,16 +34,16 @@ function Cray_Lib.Colors:Color(r, g, b, a)
     
     a = a or 255
 
-    local table = {r = math.min( r, 255 ), g =  math.min( g, 255 ), b =  math.min( b, 255 ), a =  math.min( a, 255 )}
-    if Cray_Lib.Colors['_' .. table.r .. table.g .. table.b .. table.a] then
+    local table_color = {r = math.min( r, 255 ), g =  math.min( g, 255 ), b =  math.min( b, 255 ), a =  math.min( a, 255 )}
+    if Cray_Lib.Colors['_' .. table_color.r .. table_color.g .. table_color.b .. table_color.a] then
         goto finish
     else
-        Cray_Lib.Colors['_' .. table.r .. table.g .. table.b .. table.a] = Color(table.r, table.g, table.b, table.a)
+        Cray_Lib.Colors['_' .. table_color.r .. table_color.g .. table_color.b .. table_color.a] = Color(table_color.r, table_color.g, table_color.b, table_color.a)
     end
 
     ::finish::
     
-    return Cray_Lib.Colors['_' .. table.r .. table.g .. table.b .. table.a]
+    return Cray_Lib.Colors['_' .. table_color.r .. table_color.g .. table_color.b .. table_color.a]
 end
 
 function Cray_Lib.Materials:Material(material)
@@ -80,36 +80,36 @@ function Cray_Lib.Notifications:KillNotification(id)
     end
 end
 
-function Cray_Lib.Notifications:DrawNotif(notification)
-    if not notification then return end
-    if not istable(notification) then return end
+function Cray_Lib.Notifications:DrawNotif(table_notification)
+    if not table_notification then return end
+    if not istable(table_notification) then return end
 
     surface.SetFont(Cray_Lib.Fonts:Font(5))
 
-    notification.w, _ = surface.GetTextSize(notification.text)
-    notification.w = notification.w + 50
-    if notification.type == 1 then
-        draw.RoundedBox(4, notification.x - notification.w - 25, notification.y, notification.w, notification.h, Cray_Lib.Colors:Color(44, 62, 80))
-        draw.RoundedBox(0, notification.x - notification.w - 25, notification.y + 0.05, notification.w - (notification.w - 21), notification.h, Cray_Lib.Colors:Color(39, 174, 96)) 
-    elseif notification.type == 2 then
-        draw.RoundedBox(4, notification.x - notification.w - 25, notification.y, notification.w, notification.h, Cray_Lib.Colors:Color(44, 62, 80))
-        draw.RoundedBox(0, notification.x - notification.w - 25, notification.y + 0.05, notification.w - (notification.w - 21), notification.h, Cray_Lib.Colors:Color(192, 57, 43))
-    elseif notification.type == 3 then
-        draw.RoundedBox(4, notification.x - notification.w - 25, notification.y, notification.w, notification.h, Cray_Lib.Colors:Color(44, 62, 80))
-        draw.RoundedBox(0, notification.x - notification.w - 25, notification.y + 0.05, notification.w - (notification.w - 21), notification.h, Cray_Lib.Colors:Color(243, 156, 18)) 
-    elseif notification.type == 4 then
-        draw.RoundedBox(4, notification.x - notification.w - 25, notification.y, notification.w, notification.h, Cray_Lib.Colors:Color(44, 62, 80))
-        draw.RoundedBox(0, notification.x - notification.w - 25, notification.y + 0.05, notification.w - (notification.w - 21), notification.h, Cray_Lib.Colors:Color(52, 152, 235)) 
+    table_notification.w, _ = surface.GetTextSize(table_notification.text)
+    table_notification.w = table_notification.w + 50
+    if table_notification.type == 1 then
+        draw.RoundedBox(4, table_notification.x - table_notification.w - 25, table_notification.y, table_notification.w, table_notification.h, Cray_Lib.Colors:Color(44, 62, 80))
+        draw.RoundedBox(0, table_notification.x - table_notification.w - 25, table_notification.y + 0.05, table_notification.w - (table_notification.w - 21), table_notification.h, Cray_Lib.Colors:Color(39, 174, 96)) 
+    elseif table_notification.type == 2 then
+        draw.RoundedBox(4, table_notification.x - table_notification.w - 25, table_notification.y, table_notification.w, table_notification.h, Cray_Lib.Colors:Color(44, 62, 80))
+        draw.RoundedBox(0, table_notification.x - table_notification.w - 25, table_notification.y + 0.05, table_notification.w - (table_notification.w - 21), table_notification.h, Cray_Lib.Colors:Color(192, 57, 43))
+    elseif table_notification.type == 3 then
+        draw.RoundedBox(4, table_notification.x - table_notification.w - 25, table_notification.y, table_notification.w, table_notification.h, Cray_Lib.Colors:Color(44, 62, 80))
+        draw.RoundedBox(0, table_notification.x - table_notification.w - 25, table_notification.y + 0.05, table_notification.w - (table_notification.w - 21), table_notification.h, Cray_Lib.Colors:Color(243, 156, 18)) 
+    elseif table_notification.type == 4 then
+        draw.RoundedBox(4, table_notification.x - table_notification.w - 25, table_notification.y, table_notification.w, table_notification.h, Cray_Lib.Colors:Color(44, 62, 80))
+        draw.RoundedBox(0, table_notification.x - table_notification.w - 25, table_notification.y + 0.05, table_notification.w - (table_notification.w - 21), table_notification.h, Cray_Lib.Colors:Color(52, 152, 235)) 
     end
 
-    draw.SimpleText(notification.text, Cray_Lib.Fonts:Font(5), notification.x - notification.w + 3, notification.y + notification.h - 30, Cray_Lib.Colors:Color(236, 240, 241))
+    draw.SimpleText(table_notification.text, Cray_Lib.Fonts:Font(5), table_notification.x - table_notification.w + 3, table_notification.y + table_notification.h - 30, Cray_Lib.Colors:Color(236, 240, 241))
 end
 
 function Cray_Lib.Data:Sync()
     for k, v in pairs(Cray_Lib.Data.Lists) do
         net.Receive('Cray_Lib.Nets.Data.Update_' .. v.name, function()
-            local table = net.ReadTable()
-            table.player[table.variable_name] = table.response
+            local table_receive = net.ReadTable()
+            table_receive.player[table_receive.variable_name] = table_receive.response
         end)
     end
 end
@@ -128,13 +128,6 @@ function Cray_Lib.Math:FormatTime(seconds)
         
         return hours .. ':' .. mins .. ':' .. secs
     end
-end
-
-function Cray_Lib.Math:NumberCommas(number)
-    if not number then return end
-    if not isnumber(number) then return end
-
-    return tostring(math.floor(number)):reverse():gsub('(%d%d%d)','%1,'):gsub(',(%-?)$','%1'):reverse()
 end
 
 function Cray_Lib.Math:MoneyCommas(money)
@@ -158,18 +151,35 @@ function Cray_Lib.Math:Convert(type, totype, value)
     for k, v in ipairs(Cray_Lib.Math.Lists) do
         if v.type == type and v.totype == totype then
             return v.func(value)
-        else
-            return 0
         end
     end
+
+    return 0
 end
 
 function Cray_Lib.Graphics:DrawCustomCursor(panel, material)
     if not panel or not material then return end
     if not ispanel(panel) or not IsValid(panel) then return end
     
-	local cursorX, cursorY = panel:LocalCursorPos()
+	local x, y = panel:LocalCursorPos()
 	surface.SetDrawColor(255, 255, 255, 240)
 	surface.SetMaterial(material)
-	surface.DrawTexturedRect(cursorX, cursorY, 20, 20)
+	surface.DrawTexturedRect(x, y, 20, 20)
+end
+
+function Cray_Lib.Graphics:DrawCircle(x, y, radius, seg)
+    if not x or not y or not radius or not seg then return end
+
+    local cir = {}
+    cir[#cir + 1] = {x = x, y = y, u = 0.5, v = 0.5}
+
+    for i = 0, seg do
+        local a = math.rad(( i / seg ) * -360)
+        cir[#cir + 1] = {x = x + math.sin(a) * radius, y = y + math.cos(a) * radius, u = math.sin(a) / 2 + 0.5, v = math.cos(a) / 2 + 0.5}
+    end
+
+    local a = math.rad(0)
+    cir[#cir + 1] = {x = x + math.sin(a) * radius, y = y + math.cos(a) * radius, u = math.sin(a) / 2 + 0.5, v = math.cos(a) / 2 + 0.5}
+
+    surface.DrawPoly(cir)
 end

@@ -5,8 +5,6 @@
 */
 
 concommand.Add('cray_lib_notifiation_test', function()
-    if not IsValid(LocalPlayer()) then return end
-
     Cray_Lib.Notifications:AddNotification('Example of a valid notification type', 1, 10)
     Cray_Lib.Notifications:AddNotification('Example of a invalid notification type', 2, 10)
     Cray_Lib.Notifications:AddNotification('Example of a valid means notification type', 3, 10)
@@ -14,10 +12,8 @@ concommand.Add('cray_lib_notifiation_test', function()
 end)
 
 concommand.Add('cray_lib_colorpicker_test', function()
-    if not IsValid(LocalPlayer()) then return end
-
-    local frame = vgui.Create('DFrame')
-    frame:SetSize(350, 350)
+    local frame = vgui.Create('Cray_Frame')
+    frame:SetSize(400, 400)
     frame:Center()
     frame:SetTitle('Cray Lib')
     frame:MakePopup() 	
@@ -35,9 +31,7 @@ concommand.Add('cray_lib_colorpicker_test', function()
 end)
 
 concommand.Add('cray_lib_button_test', function()
-    if not IsValid(LocalPlayer()) then return end
-
-    local frame = vgui.Create('DFrame')
+    local frame = vgui.Create('Cray_Frame')
     frame:SetSize(350, 350)
     frame:Center()
     frame:SetTitle('Cray Lib')
@@ -49,25 +43,36 @@ concommand.Add('cray_lib_button_test', function()
     button:Center()  
 end)
 
-/*concommand.Add('cray_lib_frame_test', function()
-    if not IsValid(LocalPlayer()) then return end
+concommand.Add('cray_lib_checkbox_test', function()
+    local frame = vgui.Create('Cray_Frame')
+    frame:SetSize(350, 350)
+    frame:Center()
+    frame:SetTitle('Cray Lib')
+    frame:MakePopup() 	
 
+    local checkbox = vgui.Create('Cray_CheckBox', frame)
+    checkbox:SetSize(100, 100)
+    checkbox:Center()
+    checkbox:SetValue(true)
+end)
+
+concommand.Add('cray_lib_frame_test', function()
     local frame = vgui.Create('Cray_Frame')
     frame:SetSize(800, 800)
     frame:Center()
     frame:SetTitle('Cray Lib')
     frame:MakePopup() 	
-end)*/
+end)
 
 concommand.Add('cray_lib_config', function()
-    if not IsValid(LocalPlayer()) then return end
-    if not LocalPlayer():GetUserGroup() == 'superadmin' then return end
+    if not (LocalPlayer():GetUserGroup() == 'superadmin') then return end
 
     net.Start('Cray_Lib.Nets.Configuration.ServerSync')
     net.SendToServer()
     
+    local country = system.GetCountry()
     timer.Simple(0.25, function()
-        local frame = vgui.Create('DFrame')
+        local frame = vgui.Create('Cray_Frame')
         frame:SetSize(500, 400)
         frame:Center()
         frame:SetTitle('Cray Lib')
@@ -77,22 +82,16 @@ concommand.Add('cray_lib_config', function()
         button:SetSize(450, 300)
         button:Center()
         if LocalPlayer().Cray_Lib_Config.resource_download then
-            button:SetText(Cray_Lib.Language[system.GetCountry() or 'EN'].config_disable_resource_add_file)
+            button:SetText(Cray_Lib.Language[country or 'EN'].config_disable_resource_add_file)
         else
-            button:SetText(Cray_Lib.Language[system.GetCountry() or 'EN'].config_activate_resource_add_file)
+            button:SetText(Cray_Lib.Language[country or 'EN'].config_activate_resource_add_file)
         end
         button.DoClick = function()
-            if LocalPlayer().Cray_Lib_Config.resource_download then
-                net.Start('Cray_Lib.Nets.Configuration.Resource_Download')
-                    net.WriteBool(false)
-                net.SendToServer()
-            else
-                net.Start('Cray_Lib.Nets.Configuration.Resource_Download')
-                    net.WriteBool(true)
-                net.SendToServer()
-            end
+            net.Start('Cray_Lib.Nets.Configuration.Resource_Download')
+                net.WriteBool(not LocalPlayer().Cray_Lib_Config.resource_download)
+            net.SendToServer()
 
-            Cray_Lib.Notifications:AddNotification(Cray_Lib.Language[system.GetCountry() or 'EN'].config_editrestart, 1, 10)
+            Cray_Lib.Notifications:AddNotification(Cray_Lib.Language[country or 'EN'].config_editrestart, 1, 10)
 
             frame:Close()
         end

@@ -13,7 +13,7 @@ util.AddNetworkString('Cray_Lib.Nets.Configuration.Resource_Download')
 
 net.Receive('Cray_Lib.Nets.Configuration.ServerSync', function(len, ply)
     if not IsValid(ply) then return end
-    if not ply:GetUserGroup() == 'superadmin' then return end
+    if not (ply:GetUserGroup() == 'superadmin') then return end
 
     if not file.Exists('cray_lib/', 'DATA') then 
         file.CreateDir('cray_lib')
@@ -31,7 +31,7 @@ end)
 
 net.Receive('Cray_Lib.Nets.Configuration.Resource_Download', function(len, ply)
     if not IsValid(ply) then return end
-    if not ply:GetUserGroup() == 'superadmin' then return end
+    if not (ply:GetUserGroup() == 'superadmin') then return end
 
     if not file.Exists('cray_lib/', 'DATA') then 
         file.CreateDir('cray_lib')
@@ -42,7 +42,7 @@ net.Receive('Cray_Lib.Nets.Configuration.Resource_Download', function(len, ply)
         file.Write('cray_lib/configuration.json', util.TableToJSON({resource_download = true}))
     end
 
-    local table = util.JSONToTable(file.Read('cray_lib/configuration.json', 'DATA'))
-    table.resource_download = net.ReadBool()
-    file.Write('cray_lib/configuration.json', util.TableToJSON(table))
+    local table_file = util.JSONToTable(file.Read('cray_lib/configuration.json', 'DATA'))
+    table_file.resource_download = net.ReadBool()
+    file.Write('cray_lib/configuration.json', util.TableToJSON(table_file))
 end)
