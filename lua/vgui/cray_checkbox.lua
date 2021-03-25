@@ -72,23 +72,23 @@ function PANEL:GetCheckboxCursor()
 	return self.Cursor
 end
 
-function PANEL:Paint()
-	draw.RoundedBox(0, 0, -10, 70, 30, Cray_Lib.Colors:Color(44, 62, 80))
+function PANEL:Paint(w, h)
+	draw.RoundedBox(0, 0, -10, h * 2, 30, Cray_Lib.Colors:Color(44, 62, 80))
 
 	Cray_Lib.Graphics:DrawCustomCursor(self, Cray_Lib.Materials:Material(self.Cursor))
 
 	if self:GetChecked() == true then
-		self.Lerp = Lerp(0.05, self.Lerp, 60)
+		self.Lerp = Lerp(0.05, self.Lerp, h - 10)
 
 		surface.SetDrawColor(39, 174, 96)
 		draw.NoTexture()
-		Cray_Lib.Graphics:DrawCircle(self.Lerp, 10, 8, 10)
+		Cray_Lib.Graphics:DrawCircle(self.Lerp, 10, 8, 60)
 	else
 		self.Lerp = Lerp(0.05, self.Lerp, 10)
 
 		surface.SetDrawColor(192, 57, 43)
 		draw.NoTexture()
-		Cray_Lib.Graphics:DrawCircle(self.Lerp, 10, 8, 10)
+		Cray_Lib.Graphics:DrawCircle(self.Lerp, 10, 8, 60)
 	end
 end
 
